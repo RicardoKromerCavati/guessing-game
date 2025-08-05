@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -7,8 +8,9 @@ int main()
     printf("*********************************\n");
 
     int userGuess = 0;
-    int secretNumber = 42;
     int attempt = 1;
+    int secretNumber = 42;
+    float points = 1000;
 
     while (1)
     {
@@ -28,11 +30,13 @@ int main()
 
         if (guessedCorrectly)
         {
-            printf("Congratulations, you guessed it right on attempt number %d!\n", attempt);
             break;
         }
 
         attempt++;
+
+        float lostPoints = abs((userGuess - secretNumber) / (double)2);
+        points -= lostPoints;
 
         int isSecretNumberBiggerThanGuess = secretNumber > userGuess;
 
@@ -45,6 +49,8 @@ int main()
         printf("I'm sorry, you missed. Your guess is bigger than the secret number!\n");
     }
 
+    printf("Congratulations, you guessed it right on attempt number %d!\n", attempt);
+    printf("Total points: %.1f!\n", points);
     printf("Game over.\n");
 
     return 0;
