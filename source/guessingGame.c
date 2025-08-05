@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -7,10 +8,15 @@ int main()
     printf("* Welcome to our guessing game! *\n");
     printf("*********************************\n");
 
+
     int userGuess = 0;
     int attempt = 1;
-    int secretNumber = 42;
     float points = 1000;
+    
+    int epochTimestampSeed = time(0);
+    srand(epochTimestampSeed);
+    int randomNumber = rand();
+    int secretNumber = randomNumber % 100;
 
     while (1)
     {
